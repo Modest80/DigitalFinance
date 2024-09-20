@@ -40,7 +40,25 @@ function Cabinet() {
                     </header>
 
                     <section className="bg-neutral-100 h-[400px] rounded-md flex justify-center items-center">
-                        <p className="text-lg text-neutral-500">Выберите действие в меню слева.</p>
+                        <form className="bg-neutral-50 rounded-md shadow-md p-6 w-[500px] space-y-6">
+                            <h2 className="text-xl">Создать новый счёт</h2>
+                            <div>
+                                <label htmlFor="account-type" className="block mb-2">Тип счёта</label>
+                                <details className="relative">
+                                    <summary className="cursor-pointer block w-full bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">Выберите тип счёта</summary>
+                                    <ul className="absolute z-10 bg-neutral-50 w-full border rounded-md mt-2 shadow-lg">
+                                        <li className="py-2 px-4 hover:bg-neutral-200 cursor-pointer">Сберегательный</li>
+                                        <li className="py-2 px-4 hover:bg-neutral-200 cursor-pointer">Текущий</li>
+                                        <li className="py-2 px-4 hover:bg-neutral-200 cursor-pointer">Кредитный</li>
+                                    </ul>
+                                </details>
+                            </div>
+                            <div>
+                                <label htmlFor="account-name" className="block mb-2">Название счёта</label>
+                                <input type="text" id="account-name" className="w-full px-4 py-2 bg-neutral-100 rounded-md" placeholder="Введите название счёта" />
+                            </div>
+                            <button className="w-full bg-primary text-white py-2 px-4 rounded-full">Создать счёт</button>
+                        </form>
                     </section>
                 </main>
             </div>
