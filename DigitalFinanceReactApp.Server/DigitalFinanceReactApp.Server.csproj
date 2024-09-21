@@ -29,6 +29,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Librarys\" />
     <Folder Include="wwwroot\" />
+    <Folder Include="Querys\" />
   </ItemGroup>
 
 </Project>
