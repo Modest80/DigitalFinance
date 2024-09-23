@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DigitalFinanceReactApp.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06db1d1cf5281844c6e0ef1cd2b7a915455da824")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd45f7f67644de97e86a4a8b7081d99160f8e086")]
 [assembly: System.Reflection.AssemblyProductAttribute("DigitalFinanceReactApp.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DigitalFinanceReactApp.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

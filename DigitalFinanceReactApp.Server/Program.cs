@@ -9,6 +9,16 @@ namespace DigitalFinanceReactApp.Server {
         public static void Main(string[] args) {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder => {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
             builder.Services.AddScoped<IDbConnection>(db => new NpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IRepository<AbstractUser>, UserRepository>();
 
@@ -19,7 +29,7 @@ namespace DigitalFinanceReactApp.Server {
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-
+            app.UseCors("AllowAll");
             app.UseDefaultFiles();
             app.UseStaticFiles();
 

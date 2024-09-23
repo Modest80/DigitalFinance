@@ -20,7 +20,7 @@ function Reg() {
         };
 
         try {
-            const response = await fetch('http://localhost:5146/api/register', {
+            const response = await fetch('http://localhost:5146/api/Users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
