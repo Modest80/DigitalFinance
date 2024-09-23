@@ -20,8 +20,7 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
     if (0 !== child_process.spawnSync('dotnet', [
         'dev-certs',
         'http',
-        '--export-path',
-        certFilePath,
+        
         '--format',
         'Pem',
         '--no-password',
@@ -49,9 +48,6 @@ export default defineConfig({
             }
         },
         port: 5173,
-        https: {
-            key: fs.readFileSync(keyFilePath),
-            cert: fs.readFileSync(certFilePath),
-        }
+        https: false
     }
 })
