@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DigitalFinanceReactApp.Server.Models.User;
+using DigitalFinanceReactApp.Server.Models.Users;
 using System.Data;
 
 namespace DigitalFinanceReactApp.Server.Databases
@@ -9,8 +10,9 @@ namespace DigitalFinanceReactApp.Server.Databases
 		public UserRepository(IDbConnection dbConnection) : base(dbConnection) { }
 		public int Add(AbstractUser entity)
 		{
+			User user = (User)entity;
 			var query = "INSERT INTO Users(name, email, phone, password) VALUES(@name, @email, @phone, @password);";
-			return _connection.Execute(query, new { entity.Name, entity.Email, entity.Phone, entity.Password });
+			return _connection.Execute(query, new { user.Name, user.Email, user.Phone, user.Password });
 		}
 
 		public int Delete(int id)
@@ -33,8 +35,10 @@ namespace DigitalFinanceReactApp.Server.Databases
 
 		public int Update(AbstractUser entity)
 		{
-			var query = "UPDATE Users SET(name = @name) where id = @id;";
-			return _connection.Execute(query, new {entity.Id, entity.Name, entity.Email, entity.Phone, entity.Password });
+            User user = (User)entity;
+            var query = "UPDATE Users SET name = @name, email = @email, phone = @phone, " +
+				"password = @password where id = @id;";
+			return _connection.Execute(query, new { user.Name, user.Email, user.Phone, user.Password, user.Id });
 		}
 	}
 }

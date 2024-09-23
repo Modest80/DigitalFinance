@@ -1,3 +1,6 @@
+using DigitalFinanceReactApp.Server.Databases;
+using DigitalFinanceReactApp.Server.Models.User;
+using DigitalFinanceReactApp.Server.Models.Users;
 using Npgsql;
 using System.Data;
 
@@ -7,10 +10,12 @@ namespace DigitalFinanceReactApp.Server {
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddScoped<IDbConnection>(db => new NpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IRepository<AbstractUser>, UserRepository>();
 
             builder.Services.AddAuthorization();
 
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
@@ -24,6 +29,7 @@ namespace DigitalFinanceReactApp.Server {
             }
 
             app.UseAuthorization();
+            app.MapControllers();
 
             app.Run();
         }
