@@ -9,7 +9,7 @@ namespace DigitalFinanceReactApp.Server.Databases {
     public class HistorieRepository : Repository, IRepository<Historie> {
         public HistorieRepository(IDbConnection dbConnection) : base(dbConnection) { }
         public int Add(Historie entity) {
-            var query = "INSERT INTO Hiatories(from_account, to_account, amount, commentary) VALUES(@from_account, @to_account, @amount, @commentary);";
+            var query = "INSERT INTO Histories(from_account, to_account, amount, commentary) VALUES(@from_account, @to_account, @amount, @commentary);";
             return _connection.Execute(query, new { entity.FromAccount, entity.ToAccount, entity.Amount, entity.Commentary });
         }
         public int Delete(int id) {
@@ -23,7 +23,7 @@ namespace DigitalFinanceReactApp.Server.Databases {
 
         public Historie? GetById(int id) {
             var query = "SELECT * FROM Histories where id = @id;";
-            return _connection.Query<Historie>(query, new { id }).FirstOrDefault();
+            return _connection.QueryFirst<Historie>(query, new { id });
         }
 
         public int Update(Historie entity) {

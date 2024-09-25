@@ -40,5 +40,8 @@ namespace DigitalFinanceReactApp.Server.Databases
 				"password = @password where id = @id;";
 			return _connection.Execute(query, new { user.Name, user.Email, user.Phone, user.Password, user.Id });
 		}
-	}
+        public async Task<User?> GetByEmail(string email) {
+            return await _connection.QuerySingleOrDefaultAsync<User?>("SELECT * FROM Users WHERE email = @email", new { email });
+        }
+    }
 }

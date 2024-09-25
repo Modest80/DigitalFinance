@@ -1,4 +1,5 @@
 using DigitalFinanceReactApp.Server.Databases;
+using DigitalFinanceReactApp.Server.Models;
 using DigitalFinanceReactApp.Server.Models.User;
 using DigitalFinanceReactApp.Server.Models.Users;
 using Npgsql;
@@ -21,6 +22,7 @@ namespace DigitalFinanceReactApp.Server {
 
             builder.Services.AddScoped<IDbConnection>(db => new NpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IRepository<AbstractUser>, UserRepository>();
+            builder.Services.AddScoped<IRepository<Historie>, HistorieRepository>();
 
             builder.Services.AddAuthorization();
 
