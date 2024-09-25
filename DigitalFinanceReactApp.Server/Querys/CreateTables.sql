@@ -42,19 +42,19 @@ INSERT INTO All_Accounts(type) VALUES
 
 --Запускаем последовательность для уникального номера счета(каждый раз будет +1)
 -- PS Создавать последовательность нужно до создания таблицы
---CREATE SEQUENCE account_number_reg START 1000000000; 
+CREATE SEQUENCE account_number_seq START 1000000000;
 
 ---- Редактирование таблицы Accounts
---CREATE TABLE Accounts (
---    id SERIAL PRIMARY KEY,
---    user_id int REFERENCES Users(id),
---    title Text,
---    account_number_reg VARCHAR(20) NOT NULL UNIQUE DEFAULT (nextval('account_number_seq')::text),
---    balance decimal NOT NULL DEFAULT 0.0,
---    created_at bigint NOT NULL,
---    updated_at bigint NOT NULL,
---    status VARCHAR(50) NOT NULL DEFAULT 'Created',
---    accounts_id int,
+CREATE TABLE Accounts (
+    id SERIAL PRIMARY KEY,
+    user_id int REFERENCES Users(id),
+    title Text,
+    account_number_reg VARCHAR(20) NOT NULL UNIQUE DEFAULT (nextval('account_number_seq')::VARCHAR),
+    balance decimal NOT NULL DEFAULT 0.0,
+    created_at bigint NOT NULL DEFAULT extract(epoch from now()),
+    updated_at bigint NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'Created',
+    accounts_id int,
 
---    FOREIGN KEY accounts_id REFERENCES  All_Accounts(id)
---);
+    FOREIGN KEY (accounts_id) REFERENCES  All_Accounts(id)
+);

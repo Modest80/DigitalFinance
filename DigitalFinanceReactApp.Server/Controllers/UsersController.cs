@@ -1,4 +1,5 @@
 ﻿using DigitalFinanceReactApp.Server.Databases;
+using DigitalFinanceReactApp.Server.Librarys;
 using DigitalFinanceReactApp.Server.Models.User;
 using DigitalFinanceReactApp.Server.Models.Users;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,7 @@ namespace DigitalFinanceReactApp.Server.Controllers {
             if (user == null) {
                 return BadRequest(new { Message = "Ошибка в данных" });
             }
+            user.Password = CryptoHelper.CryptMD5(user.Password);
             if (_userRepository.Add(user) != 0) {
                 return Ok(new { Message = "Данные успешно сохранены!" });
             } else {
