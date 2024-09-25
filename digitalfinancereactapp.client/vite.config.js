@@ -13,16 +13,16 @@ const baseFolder =
         : `${env.HOME}/.aspnet/https`;
 
 const certificateName = "digitalfinancereactapp.client";
-const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
+//const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
+//const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
-if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-    if (0 !== child_process.spawnSync('dotnet', [
-        
-    ], { stdio: 'inherit', }).status) {
-        throw new Error("Could not create certificate.");
-    }
-}
+//if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
+//    if (0 !== child_process.spawnSync('dotnet', [
+//        
+//    ], { stdio: 'inherit', }).status) {
+//        throw new Error("Could not create certificate.");
+//    }
+//}
 
 const target = env.ASPNETCORE_HTTPS_PORT ? `http://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
     env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:5001';

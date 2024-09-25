@@ -24,13 +24,13 @@ namespace DigitalFinanceReactApp.Server.Controllers {
             if(!Regex.IsMatch(user.Email,EMAILPATTERN)) return BadRequest(new { Message = "Некорректный логин" });
             User? db_user = await _userRepository.GetByEmail(user.Email);
             #region Какой варинт лучше?
-            if(db_user == null) return NoContent();
-            //if(db_user == null) return BadRequest(new { Message = "Пользователь не найден" });
+            //if(db_user == null) return NoContent();
+            if(db_user == null) return BadRequest(new { Message = "Пользователь не найден" });
             #endregion
-            if(!CryptoHelper.VerifyPassword(user.Password,db_user.Password)) {
+            if(!CryptoHelper.VerifyPassword(user.Password, db_user.Password)) {
                 return BadRequest(new { Message = "Неправильный логин или пароль" });
             }
-            return Ok();
+            return Ok(new { Message = "Вы успешно авторизованы!" });
         }
     }
 }
