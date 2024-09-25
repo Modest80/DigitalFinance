@@ -1273,23 +1273,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Users\\Оля\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\source\\repos\\DigitalFinanceReactApp\\DigitalFinanceReactApp.Server\\DigitalFinanceReactApp.Server.csproj",
+      "projectUniqueName": "D:\\ТОП\\C#\\На уроках\\DigitalFinance\\DigitalFinance\\DigitalFinanceReactApp.Server\\DigitalFinanceReactApp.Server.csproj",
       "projectName": "DigitalFinanceReactApp.Server",
-      "projectPath": "C:\\Users\\user\\source\\repos\\DigitalFinanceReactApp\\DigitalFinanceReactApp.Server\\DigitalFinanceReactApp.Server.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\source\\repos\\DigitalFinanceReactApp\\DigitalFinanceReactApp.Server\\obj\\",
+      "projectPath": "D:\\ТОП\\C#\\На уроках\\DigitalFinance\\DigitalFinance\\DigitalFinanceReactApp.Server\\DigitalFinanceReactApp.Server.csproj",
+      "packagesPath": "C:\\Users\\Оля\\.nuget\\packages\\",
+      "outputPath": "D:\\ТОП\\C#\\На уроках\\DigitalFinance\\DigitalFinance\\DigitalFinanceReactApp.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Оля\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1298,7 +1298,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1362,7 +1361,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
