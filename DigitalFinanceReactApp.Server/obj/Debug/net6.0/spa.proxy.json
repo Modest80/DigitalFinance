@@ -1,8 +1,0 @@
-{
-"SpaProxyServer": {
-"ServerUrl": "https://localhost:5173",
-"LaunchCommand": "npm run dev",
-"WorkingDirectory": "D:\\ТОП\\C#\\На уроках\\DigitalFinance\\DigitalFinance\\DigitalFinanceReactApp.Server\\..\\digitalfinancereactapp.client",
-"MaxTimeoutInSeconds": "120"
-}
-}

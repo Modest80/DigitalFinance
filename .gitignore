@@ -24,5 +24,6 @@ dist-ssr
 
 # Исключить директории
 .vs
-DigitalFinanceReactApp.Server/bin
-DigitalFinanceReactApp.Server/obj
+DigitalFinanceReactApp.Server/bin/*
+DigitalFinanceReactApp.Server/obj/*
+digitalfinancereactapp.client/obj/*
