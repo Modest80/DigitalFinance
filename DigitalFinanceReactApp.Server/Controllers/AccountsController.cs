@@ -18,7 +18,9 @@ namespace DigitalFinanceReactApp.Server.Controllers {
         public async Task<IActionResult> Post(AccountCreateDTO account) {
             try {
                 int user_id = int.Parse(User.FindFirstValue(ClaimTypes.Sid));
+
                 account.User_id = user_id;
+
                 if(account == null) {
                     return BadRequest(new { Message = "Ошибка в запросе" });
                 }
