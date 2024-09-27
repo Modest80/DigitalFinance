@@ -23,6 +23,7 @@ namespace DigitalFinanceReactApp.Server {
             builder.Services.AddScoped<IDbConnection>(db => new NpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IRepository<AbstractUser>, UserRepository>();
             builder.Services.AddScoped<IRepository<Historie>, HistorieRepository>();
+            builder.Services.AddScoped<IRepository<TypeAccount>, TypeAccountRepository>();
 
             builder.Services.AddAuthorization();
 
