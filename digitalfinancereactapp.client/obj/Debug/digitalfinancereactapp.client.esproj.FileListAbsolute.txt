@@ -1,7 +1,0 @@
-C:\Users\user\source\repos\DigitalFinanceReactApp\digitalfinancereactapp.client\obj\Debug\digitalfinancereactapp.client.esproj.CoreCompileInputs.cache
-C:\Users\Proger\DigitalFinance\digitalfinancereactapp.client\obj\Debug\digitalfinancereactapp.client.esproj.CoreCompileInputs.cache
-<<<<<<< HEAD
-C:\Users\andre\OneDrive\Рабочий стол\DigitalFinance\digitalfinancereactapp.client\obj\Debug\digitalfinancereactapp.client.esproj.CoreCompileInputs.cache
-=======
-C:\Users\student\DigitalFinance\digitalfinancereactapp.client\obj\Debug\digitalfinancereactapp.client.esproj.CoreCompileInputs.cache
->>>>>>> 652b43f756d0ee1cf15e580d8f2ee4b6e27b9ce1
