@@ -15,11 +15,11 @@ namespace DigitalFinanceReactApp.Server.Controllers {
             try {
                 var type = _typeRepository.Get();
                 if(type == null) {
-                    return NotFound("По запросу ничего не найдено");
+                    return NotFound(new { Message = "По запросу ничего не найдено" });
                 }
                 return Ok(type);
             } catch(Exception) {
-                return StatusCode(500,"Ошибка сервера");
+                return StatusCode(500, new { Message = "Ошибка сервера" });
             }
         }
     }
