@@ -1,8 +1,8 @@
 ﻿import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
-import Create from './Create';
-import Deposit from './Deposit';
-import Transfer from './Transfer';
+//import Create from './Create';
+//import Deposit from './Deposit';
+//import Transfer from './Transfer';
 
 import "./css/cabinet.css";
 
