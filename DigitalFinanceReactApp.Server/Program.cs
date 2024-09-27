@@ -27,6 +27,7 @@ namespace DigitalFinanceReactApp.Server {
             builder.Services.AddScoped<IRepository<AbstractUser>,UserRepository>();
             builder.Services.AddScoped<IRepository<Historie>,HistorieRepository>();
             builder.Services.AddScoped<IRepository<Account>,AccountRepository>();
+            builder.Services.AddScoped<IRepository<TypeAccount>,TypeAccountRepository>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
@@ -70,25 +71,17 @@ namespace DigitalFinanceReactApp.Server {
             
 
             var app = builder.Build();
-
             app.UseAuthentication();
-
             app.UseAuthorization();
 
             if(app.Environment.IsDevelopment()) {
-
                 app.UseSwagger();
-
                 app.UseSwaggerUI();
-
             };
-
+            app.UseCors("AllowAll");
             app.UseDefaultFiles();
-
             app.UseStaticFiles();
-
             app.MapControllers();
-
             app.Run();
         }
 

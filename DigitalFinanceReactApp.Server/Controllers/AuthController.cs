@@ -33,5 +33,9 @@ namespace DigitalFinanceReactApp.Server.Controllers {
             }
             return Ok(new { token = $"Bearer {new JwtSecurityTokenHandler().WriteToken(JWTTokenHandler.CreateToken(db_user.Id,db_user.Email))}" });
         }
+        [HttpOptions]
+        public async Task<IActionResult> Options() {
+            return Ok();
+        }
     }
 }
