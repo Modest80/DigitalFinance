@@ -1,9 +1,6 @@
 ﻿using Dapper;
 using DigitalFinanceReactApp.Server.Models;
-using DigitalFinanceReactApp.Server.Models.User;
-using DigitalFinanceReactApp.Server.Models.Users;
 using System.Data;
-using System.Net;
 
 namespace DigitalFinanceReactApp.Server.Databases {
     public class HistorieRepository : Repository, IRepository<Historie> {
