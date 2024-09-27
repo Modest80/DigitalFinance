@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/reg" element={<Reg />} />
                 <Route path="/rules" element={<Rules />} />
-                <Route path="/cabinet" element={<Cabinet />} />
+                <Route path="/cabinet/*" element={<Cabinet />} />
             </Routes>
         </Router>
   </StrictMode>,

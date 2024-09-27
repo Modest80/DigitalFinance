@@ -1,6 +1,5 @@
 ﻿import React from "react";
-
-import "./style.css";
+import "./css/style.css";
 
 function TransferBetween(){
     return (
