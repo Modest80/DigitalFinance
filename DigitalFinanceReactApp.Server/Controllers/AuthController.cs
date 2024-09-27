@@ -3,6 +3,7 @@ using DigitalFinanceReactApp.Server.Librarys;
 using DigitalFinanceReactApp.Server.Models.User;
 using DigitalFinanceReactApp.Server.Models.Users;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text.RegularExpressions;
 
 namespace DigitalFinanceReactApp.Server.Controllers {
@@ -30,7 +31,7 @@ namespace DigitalFinanceReactApp.Server.Controllers {
             if(!CryptoHelper.VerifyPassword(user.Password, db_user.Password)) {
                 return BadRequest(new { Message = "Неправильный логин или пароль" });
             }
-            return Ok(new { Message = "Вы успешно авторизованы!" });
+            return Ok(new { token = $"Bearer {new JwtSecurityTokenHandler().WriteToken(JWTTokenHandler.CreateToken(db_user.Id,db_user.Email))}" });
         }
     }
 }

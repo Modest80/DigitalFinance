@@ -1,8 +1,5 @@
 ﻿using DigitalFinanceReactApp.Server.Databases;
 using DigitalFinanceReactApp.Server.Models;
-using DigitalFinanceReactApp.Server.Models.User;
-using DigitalFinanceReactApp.Server.Models.Users;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DigitalFinanceReactApp.Server.Controllers {
