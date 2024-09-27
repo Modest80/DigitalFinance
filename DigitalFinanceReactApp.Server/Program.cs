@@ -23,7 +23,6 @@ namespace DigitalFinanceReactApp.Server {
             });
 
             builder.Services.AddScoped<IDbConnection>(db => new NpgsqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
-<<<<<<< HEAD
 
             builder.Services.AddScoped<IRepository<AbstractUser>,UserRepository>();
             builder.Services.AddScoped<IRepository<Historie>,HistorieRepository>();
@@ -41,11 +40,6 @@ namespace DigitalFinanceReactApp.Server {
                         ValidateIssuerSigningKey = true
                     };
                 });
-=======
-            builder.Services.AddScoped<IRepository<AbstractUser>, UserRepository>();
-            builder.Services.AddScoped<IRepository<Historie>, HistorieRepository>();
-            builder.Services.AddScoped<IRepository<TypeAccount>, TypeAccountRepository>();
->>>>>>> 652b43f756d0ee1cf15e580d8f2ee4b6e27b9ce1
 
             builder.Services.AddAuthorization();
 
