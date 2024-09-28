@@ -3,6 +3,11 @@ import { Route, Routes, Link } from 'react-router-dom';
 import Create from './Create';
 //import Deposit from './Deposit';
 import TransferBetween from './TransferBetween';
+import Replen from './Replen';
+import TransferUser from './TransferUser';
+import History from './History';
+import ClosingAccount from './ClosingAccount';
+import HomePage from './HomePage';
 
 import "./css/cabinet.css";
 
@@ -14,26 +19,39 @@ function Cabinet() {
                     <nav>
                         <ul className="space-y-4">
                             <li>
+                                <Link to="/cabinet/HomePage" className="block w-full text-left bg-primary text-white py-2 px-4 rounded-md">
+                                    Личные данные
+                                </Link>
+                            </li>
+                            <li>
                                 <Link to="/cabinet/create" className="block w-full text-left bg-primary text-white py-2 px-4 rounded-md">
                                     Создать счёт
                                 </Link>
                             </li>
                             <li>
-                                <button className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">Пополнить счёт</button>
-                            </li>
-                            <li>
-                                <Link to="/cabinet/TransferBetween" className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">
-                                    Сделать перевод между счетами
+                                <Link to="/cabinet/Replen" className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">
+                                    Пополнить счёт
                                 </Link>
                             </li>
                             <li>
-                                <button className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">Сделать перевод другому пользователю</button>
+                                <Link to="/cabinet/TransferBetween" className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">
+                                    Перевод между счетами
+                                </Link>
                             </li>
                             <li>
-                                <button className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">Посмотреть историю операций</button>
+                                <Link to="/cabinet/TransferUser" className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">
+                                    Перевод другому пользователю 
+                                </Link>
                             </li>
                             <li>
-                                <button className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">Закрыть счёт</button>
+                                <Link to="/cabinet/History" className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">
+                                    Истории операций
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/cabinet/ClosingAccount" className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">
+                                    Закрыть счёт
+                                </Link>
                             </li>
                             <hr />
                             <li>
@@ -51,9 +69,12 @@ function Cabinet() {
                     <section className="bg-neutral-100 h-[400px] rounded-md flex justify-center items-center">
                         <Routes>
                             <Route path="create" element={<Create />} />
-                            {/*<Route path="/cabinet/deposit" element={<Deposit />} />*/}
-                            {/*<Route path="/cabinet/transfer" element={<Transfer />} />*/}
                             <Route path="TransferBetween" element={<TransferBetween />} />
+                            <Route path="Replen" element={<Replen />} />
+                            <Route path="TransferUser" element={<TransferUser />} />
+                            <Route path="History" element={<History />} />
+                            <Route path="ClosingAccount" element={<ClosingAccount />} />
+                            <Route path="HomePage" element={<HomePage />} />
                         </Routes>
                     </section>
                 </main>

@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import "./css/style.css";
+
 
 function TransferBetween(){
     return (

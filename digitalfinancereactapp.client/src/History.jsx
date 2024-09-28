@@ -1,32 +1,46 @@
-import React from "react";
-import "./style.css";
+﻿import React from "react";
 
-function History() {
-  return (
-    <div id="webcrumbs"> 
-    	<div className="w-[500px] bg-neutral-50 p-6 shadow-md rounded-lg">
-    	  <h1 className="text-2xl font-title mb-4">История банковского счёта</h1>
-    	  <form className="flex flex-col gap-4">
-    	    <div className="flex flex-col">
-    	      <label htmlFor="accountNumber" className="text-sm mb-2">Номер счёта</label>
-    	      <input type="text" id="accountNumber" name="accountNumber" className="border rounded-md p-2" placeholder="Введите номер счёта" />
-    	    </div>
-    	
-    	    <div className="flex flex-col">
-    	      <label htmlFor="startDate" className="text-sm mb-2">Дата начала</label>
-    	      <input type="date" id="startDate" name="startDate" className="border rounded-md p-2" />
-    	    </div>
-    	
-    	    <div className="flex flex-col">
-    	      <label htmlFor="endDate" className="text-sm mb-2">Дата окончания</label>
-    	      <input type="date" id="endDate" name="endDate" className="border rounded-md p-2" />
-    	    </div>
-    	
-    	    <button type="submit" className="bg-primary text-white p-2 rounded-md">Просмотр</button>
-    	  </form>
-    	</div> 
-    </div>
-  )
-};
+function History(){
+    return (
+        <div id="webcrumbs">
+            <div className='w-[600px] min-h-[600px] rounded-lg bg-neutral-50 p-6 shadow-lg'>
+                <form className='flex flex-col gap-6'>
+                    <h1 className='text-2xl font-title'>История операций</h1>
 
+                    
+                    <div className='flex gap-4'>
+                        <div className='flex flex-col'>
+                            <label htmlFor='from-date' className='text-sm'>С какой даты</label>
+                            <input id='from-date' type='date' className='rounded-md border-gray-300 p-2' />
+                        </div>
+                        <div className='flex flex-col'>
+                            <label htmlFor='to-date' className='text-sm'>По какую дату</label>
+                            <input id='to-date' type='date' className='rounded-md border-gray-300 p-2' />
+                        </div>
+                    </div>
+
+                   
+                    <button
+                        type='submit'
+                        className='rounded-md bg-primary text-white py-2 px-4'>
+                        Найти
+                    </button>
+
+                   
+                    <div className='flex flex-col'>
+                        <label htmlFor='results' className='text-sm'>Результаты:</label>
+                        <textarea
+                            id='results'
+                            rows={10}
+                            className='border-gray-300 rounded-md p-2'
+                            placeholder='Здесь будет отображена история операций...'
+                            readOnly
+                        >
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
 export default History;

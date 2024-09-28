@@ -1,25 +1,24 @@
-import React from "react";
+п»їimport React from "react";
 
-import "./css/style.css";
 
 function Replen() {
     return (
         <div id="webcrumbs">
             <div className="w-[500px] min-h-[400px] bg-neutral-50 shadow-lg rounded-lg p-6">
-                <h1 className="font-title text-xl mb-4">Пополнение счета</h1>
+                <h1 className="font-title text-xl mb-4">РџРѕРїРѕР»РЅРµРЅРёРµ СЃС‡РµС‚Р°</h1>
                 <form className="flex flex-col gap-4">
                     <details className="relative">
-                        <summary className="cursor-pointer">Выберите счет</summary>
+                        <summary className="cursor-pointer">Р’С‹Р±РµСЂРёС‚Рµ СЃС‡РµС‚</summary>
                         <div className="absolute left-0 w-full bg-white rounded-md shadow-lg z-10">
                             <ul className="flex flex-col gap-1 p-2">
-                                <li className="p-2 rounded-md hover:bg-gray-100">Счет 1</li>
-                                <li className="p-2 rounded-md hover:bg-gray-100">Счет 2</li>
-                                <li className="p-2 rounded-md hover:bg-gray-100">Счет 3</li>
+                                <li className="p-2 rounded-md hover:bg-gray-100">РЎС‡РµС‚ 1</li>
+                                <li className="p-2 rounded-md hover:bg-gray-100">РЎС‡РµС‚ 2</li>
+                                <li className="p-2 rounded-md hover:bg-gray-100">РЎС‡РµС‚ 3</li>
                             </ul>
                         </div>
                     </details>
-                    <input type="number" placeholder="Сумма" className="border rounded-md p-2" />
-                    <button className="w-[120px] h-[40px] bg-primary text-white rounded-full">Пополнить</button>
+                    <input type="number" placeholder="РЎСѓРјРјР°" className="border rounded-md p-2" />
+                    <button className="w-[120px] h-[40px] bg-primary text-white rounded-full">РџРѕРїРѕР»РЅРёС‚СЊ</button>
                 </form>
             </div>
         </div>

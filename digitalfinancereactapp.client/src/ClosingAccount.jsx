@@ -1,8 +1,6 @@
 ﻿import React from "react";
 
 
-import "./style.css";
-
 function ClosingAccount(){
     return (
         <div id="webcrumbs">
