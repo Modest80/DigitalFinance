@@ -74,6 +74,7 @@ function Replen() {
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                     <select className="w-full p-2 rounded-md border"
                         onChange={(e) => setAccountId(e.target.value)}>
+                        <option key="0" value="0" disabled selected>-- Выберите счёт --</option>
                         {accounts.map((account) => (
                             <option key={account.id} value={account.id}>
                                 {`${account.title} - ${account.accountNumberReg || 'N/A'} - Баланс: ${account.balance}`}
