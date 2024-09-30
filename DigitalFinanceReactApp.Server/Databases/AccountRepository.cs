@@ -33,16 +33,24 @@ namespace DigitalFinanceReactApp.Server.Databases {
         }
 
         public Account? GetById(int id) {
-            return _connection.QuerySingleOrDefault("SELECT * FROM accounts WHERE id = @id",new { id });
+            return _connection.QuerySingleOrDefault<Account>("SELECT id, title, account_number_reg AccountNumberReg, balance, created_at CreatedAt, updated_at UpdatedAt, status" +
+                " FROM accounts WHERE id = @id", new { id });
         }
 
         public int Update(Account entity) {
-            throw new Exception();
+            string query = "UPDATE accounts SET balance = @balance, title = @title, status = @status " +
+                "WHERE id = @id; ";
+            return _connection.Execute(query, new { 
+                entity.Balance,
+                entity.Title,
+                entity.Status,
+                entity.Id
+            });
         }
-        public async Task<int> UpdateParametr(string parametrKey,string parametrsValue,string whereKey,string whereValue) {
+        public async Task<int> UpdateParametr(string parametrKey, string parametrsValue, string whereKey, string whereValue) {
             return await _connection.ExecuteAsync(
-                                    $"UPDATE FROM account SET {parametrKey} = @{parametrKey} WHERE {whereKey} = @{whereKey}",
-                                    new { parametrKey = parametrsValue,whereKey = whereValue });
+                                    $"UPDATE accounts SET {parametrKey} = @parametrKey WHERE {whereKey} = @whereKey; ",
+                                    new { parametrKey = parametrsValue, whereKey = whereValue });
         }
 
         public async Task<int> AddAsync(AccountCreateDTO entity) {
@@ -59,7 +67,10 @@ namespace DigitalFinanceReactApp.Server.Databases {
         }
 
         public async Task<IEnumerable<Account>> GetUserAccounts(int user_id) {
-            return await _connection.QueryAsync<Account>("SELECT * FROM accounts WHERE user_id = @user_id",new { user_id });
+            return await _connection.QueryAsync<Account>(
+                "SELECT id, title, account_number_reg AccountNumberReg, balance, status " +
+                "  FROM accounts WHERE user_id = @user_id", 
+            new { user_id });
         }
     }
 }

@@ -43,5 +43,26 @@ namespace DigitalFinanceReactApp.Server.Controllers {
             int user_id = int.Parse(User.FindFirstValue(ClaimTypes.Sid));
             return Ok(await _accountRepository.GetUserAccounts(user_id));
         }
+
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> UpdateAccount(int accountId, decimal updateBalance) {
+            int user_id = int.Parse(User.FindFirstValue(ClaimTypes.Sid));
+            if (user_id == 0) {
+                return BadRequest(new { Message = "Ошибка в запросе" });
+            }
+            if (accountId == 0) { return BadRequest(new { Message = "Ошибка в запросе" }); }
+            
+            var account = _accountRepository.GetById(accountId);
+            account.Balance += updateBalance;
+            account.UpdatedAt = 0;
+            //int result = await _accountRepository.UpdateParametr("balance", account.Balance.ToString(), "id", accountId.ToString());
+            
+            if (_accountRepository.Update(account) != 0) {
+                return Ok(new { Message = "Данные успешно обновлены" });
+            }
+            
+            return BadRequest(new { Message = "Данные НЕ обновлены!" });            
+        }
     }
 }
