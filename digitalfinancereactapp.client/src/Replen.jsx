@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+п»їimport React, { useState, useEffect } from "react";
 import "./css/style.css";
 
 function Replen() {
-    const [accountNamber, setAccountTypes] = useState([]); // Состояние для хранения счетов
-    const [error, setError] = useState(null); // Для хранения возможных ошибок
+    const [accountNamber, setAccountTypes] = useState([]); // РЎРѕСЃС‚РѕСЏРЅРёРµ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ СЃС‡РµС‚РѕРІ
+    const [error, setError] = useState(null); // Р”Р»СЏ С…СЂР°РЅРµРЅРёСЏ РІРѕР·РјРѕР¶РЅС‹С… РѕС€РёР±РѕРє
 
     useEffect(() => {
-        // Функция для получения данных с сервера
+        // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С… СЃ СЃРµСЂРІРµСЂР°
         const fetchAccountNambers = async () => {
             try {
                 const response = await fetch("http://localhost:5146/api/TypesAccounts", {
@@ -15,31 +15,31 @@ function Replen() {
                         'Content-Type': 'application/json',
                     }
 
-                }); // URL API для получения данных
+                }); // URL API РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С…
                 if (!response.ok) {
-                    throw new Error("Ошибка при загрузке данных");
+                    throw new Error("РћС€РёР±РєР° РїСЂРё Р·Р°РіСЂСѓР·РєРµ РґР°РЅРЅС‹С…");
                 }
-                const data = await response.json(); // Предполагаем, что ответ в формате JSON
-                setAccountTypes(data); // Сохраняем данные в состояние
+                const data = await response.json(); // РџСЂРµРґРїРѕР»Р°РіР°РµРј, С‡С‚Рѕ РѕС‚РІРµС‚ РІ С„РѕСЂРјР°С‚Рµ JSON
+                setAccountTypes(data); // РЎРѕС…СЂР°РЅСЏРµРј РґР°РЅРЅС‹Рµ РІ СЃРѕСЃС‚РѕСЏРЅРёРµ
             } catch (err) {
-                setError(err.message); // Обрабатываем ошибки
+                setError(err.message); // РћР±СЂР°Р±Р°С‚С‹РІР°РµРј РѕС€РёР±РєРё
             }
         };
 
-        fetchAccountNambers(); // Вызываем функцию для получения данных при монтировании компонента
+        fetchAccountNambers(); // Р’С‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЋ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С… РїСЂРё РјРѕРЅС‚РёСЂРѕРІР°РЅРёРё РєРѕРјРїРѕРЅРµРЅС‚Р°
     }, []);
 
     return (
         <div id="webcrumbs">
             <div className="w-[500px] min-h-[400px] bg-neutral-50 shadow-lg rounded-lg p-6">
-                <h1 className="font-title text-xl mb-4">Пополнение счета</h1>
+                <h1 className="font-title text-xl mb-4">РџРѕРїРѕР»РЅРµРЅРёРµ СЃС‡РµС‚Р°</h1>
                 <form className="flex flex-col gap-4">
                     <details className="relative">
-                        <summary className="cursor-pointer">Выберите счет</summary>
+                        <summary className="cursor-pointer">Р’С‹Р±РµСЂРёС‚Рµ СЃС‡РµС‚</summary>
                         <div className="absolute left-0 w-full bg-white rounded-md shadow-lg z-10">
                             <ul className="absolute z-10 bg-neutral-50 w-full border rounded-md mt-2 shadow-lg">
                                 {error ? (
-                                    <li className="py-2 px-4 text-red-500">Ошибка: {error}</li>
+                                    <li className="py-2 px-4 text-red-500">РћС€РёР±РєР°: {error}</li>
                                 ) : accountNamber.length > 0 ? (
                                     accountNamber.map((type) => (
                                         <li key={type.id} className="py-2 px-4 hover:bg-neutral-200 cursor-pointer">
@@ -47,13 +47,13 @@ function Replen() {
                                         </li>
                                     ))
                                 ) : (
-                                    <li className="py-2 px-4">Загрузка...</li>
+                                    <li className="py-2 px-4">Р—Р°РіСЂСѓР·РєР°...</li>
                                 )}
                             </ul>
                         </div>
                     </details>
-                    <input type="number" placeholder="Сумма" className="border rounded-md p-2" />
-                    <button className="w-[120px] h-[40px] bg-primary text-white rounded-full">Пополнить</button>
+                    <input type="number" placeholder="РЎСѓРјРјР°" className="border rounded-md p-2" />
+                    <button className="w-[120px] h-[40px] bg-primary text-white rounded-full">РџРѕРїРѕР»РЅРёС‚СЊ</button>
                 </form>
             </div>
         </div>
