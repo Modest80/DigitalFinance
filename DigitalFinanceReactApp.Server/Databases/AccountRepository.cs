@@ -38,12 +38,13 @@ namespace DigitalFinanceReactApp.Server.Databases {
         }
 
         public int Update(Account entity) {
-            string query = "UPDATE accounts SET balance = @balance, title = @title, status = @status " +
+            string query = "UPDATE accounts SET balance = @balance, title = @title, status = @status, updated_at = @updatedAt " +
                 "WHERE id = @id; ";
             return _connection.Execute(query, new { 
                 entity.Balance,
                 entity.Title,
                 entity.Status,
+                updatedAt = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
                 entity.Id
             });
         }
