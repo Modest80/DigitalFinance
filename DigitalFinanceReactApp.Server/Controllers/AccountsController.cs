@@ -21,10 +21,10 @@ namespace DigitalFinanceReactApp.Server.Controllers {
 
                 account.User_id = user_id;
 
-                if(account == null) {
+                if (account == null) {
                     return BadRequest(new { Message = "Ошибка в запросе" });
                 }
-                if(await _accountRepository.AddAsync(account) != 0) {
+                if (await _accountRepository.AddAsync(account) != 0) {
                     return Ok(new { Message = "Счет успешно создан" });
                 }
 

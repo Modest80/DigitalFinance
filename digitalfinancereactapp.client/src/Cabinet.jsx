@@ -11,7 +11,37 @@ import HomePage from './HomePage';
 
 import "./css/cabinet.css";
 
-function Cabinet() {    
+function Cabinet() {
+    const [accounts, setAccounts] = useState([]); // Хранение данных счетов
+
+    useEffect(() => {
+        // Функция для отправки запроса
+        const fetchAccounts = async () => {
+            try {
+                const response = await fetch('http://localhost:5146/api/Accounts', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': localStorage.getItem('token'), // Укажите здесь ваш токен
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Ошибка сети');
+                }
+
+                const data = await response.json();
+                setAccounts(data); // Сохраняем данные в состояние
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                //setLoading(false); // Снимаем индикатор загрузки
+            }
+        };
+
+        fetchAccounts();
+    }, []); // Пустой массив зависимостей означает, что useEffect выполнится один раз при монтировании компонента
+
     return (
         <div id="webcrumbs">
             <div className="w-[1200px] min-h-[600px] bg-neutral-50 rounded-lg shadow-lg flex">
@@ -70,7 +100,7 @@ function Cabinet() {
                         <Routes>
                             <Route path="create" element={<Create />} />
                             <Route path="TransferBetween" element={<TransferBetween />} />
-                            <Route path="Replen" element={<Replen />} />
+                            <Route path="Replen" element={<Replen accounts={accounts} />} />
                             <Route path="TransferUser" element={<TransferUser />} />
                             <Route path="History" element={<History />} />
                             <Route path="ClosingAccount" element={<ClosingAccount />} />

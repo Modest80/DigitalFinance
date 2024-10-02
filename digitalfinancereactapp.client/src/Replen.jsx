@@ -1,8 +1,8 @@
 ﻿import React, { useState, useEffect } from "react";
 import "./css/style.css";
 
-function Replen() {
-    const [accounts, setAccounts] = useState([]); // Хранение данных счетов
+function Replen(props) {
+    const [accounts, setAccounts] = useState(props.accounts); // Хранение данных счетов
     const [loading, setLoading] = useState(true); // Индикатор загрузки
     const [error, setError] = useState(null); // Хранение ошибок
 
@@ -35,34 +35,6 @@ function Replen() {
             setMessage(`Ошибка: ${error.message}`);
         }
     };
-
-    useEffect(() => {
-        // Функция для отправки запроса
-        const fetchAccounts = async () => {
-            try {
-                const response = await fetch('http://localhost:5146/api/Accounts', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': localStorage.getItem('token'), // Укажите здесь ваш токен
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Ошибка сети');
-                }
-
-                const data = await response.json();
-                setAccounts(data); // Сохраняем данные в состояние
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false); // Снимаем индикатор загрузки
-            }
-        };
-
-        fetchAccounts();
-    }, []); // Пустой массив зависимостей означает, что useEffect выполнится один раз при монтировании компонента
 
     if (loading) return <p>Загрузка...</p>; // Отображаем сообщение о загрузке
     if (error) return <p>Ошибка: {error}</p>; // Отображаем сообщение об ошибке

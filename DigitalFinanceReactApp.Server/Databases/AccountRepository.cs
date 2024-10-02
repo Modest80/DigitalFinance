@@ -8,19 +8,14 @@ namespace DigitalFinanceReactApp.Server.Databases {
         public AccountRepository(IDbConnection dbConnection) : base(dbConnection) { }
 
         public int Add(Account entity) {
-            var query = "INSERT INTO Accounts (Title, AccountNumberReg, Balance, CreatedAt, UpdatedAt, Status, TypeAccountId, User_id) " +
-                "VALUES (@Title, @AccountNumberReg, @Balance, @CreatedAt, @UpdatedAt, @Status, @TypeAccountId, @User_id);";
+            var query = "INSERT INTO Accounts (title, accounts_id, user_id) " +
+                "VALUES (@Title, @TypeAccountId, @UserId);";
 
             return _connection.Execute(query,
                 new {
-                    entity.Title,
-                    entity.AccountNumberReg,
-                    entity.Balance,
-                    entity.CreatedAt,
-                    entity.UpdatedAt,
-                    entity.Status,
-                    entity.TypeAccount.Id,
-                    User_id = entity.User.Id
+                    Title = entity.Title,
+                    TypeAccountId = entity.TypeAccount.Id,
+                    UserId = entity.User.Id
                 });
         }
 
@@ -56,13 +51,13 @@ namespace DigitalFinanceReactApp.Server.Databases {
 
         public async Task<int> AddAsync(AccountCreateDTO entity) {
 
-            int account_type_id = await _connection.QueryFirstOrDefaultAsync<int>(
-                "SELECT id FROM all_accounts WHERE type = @type",
-                new { type = entity.AccountType });
-
             int changedRows = await _connection.ExecuteAsync(
-                "INSERT INTO accounts (title,user_id,accounts_id) VALUES (@title,@user_id,@account_type_id)",
-                new { title = entity.Title,user_id = entity.User_id,account_type_id });
+                "INSERT INTO accounts (title, user_id, accounts_id) VALUES (@title, @user_id, @accounts_id)",
+                new { 
+                    title = entity.Title,
+                    user_id = entity.User_id,
+                    accounts_id = entity.AccountType 
+                });
 
             return changedRows;
         }
