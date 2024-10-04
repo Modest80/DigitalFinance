@@ -14,33 +14,59 @@ import "./css/cabinet.css";
 function Cabinet() {
     const [accounts, setAccounts] = useState([]); // Хранение данных счетов
 
-    useEffect(() => {
-        // Функция для отправки запроса
-        const fetchAccounts = async () => {
-            try {
-                const response = await fetch('http://localhost:5146/api/Accounts', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': localStorage.getItem('token'), // Укажите здесь ваш токен
-                        'Content-Type': 'application/json',
-                    },
-                });
+    // Функция для отправки запроса
+    const fetchAccounts = async () => {
+        try {
+            const response = await fetch('http://localhost:5146/api/Accounts', {
+                method: 'GET',
+                headers: {
+                    'Authorization': localStorage.getItem('token'), // Укажите здесь ваш токен
+                    'Content-Type': 'application/json',
+                },
+            });
 
-                if (!response.ok) {
-                    throw new Error('Ошибка сети');
-                }
-
-                const data = await response.json();
-                setAccounts(data); // Сохраняем данные в состояние
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                //setLoading(false); // Снимаем индикатор загрузки
+            if (!response.ok) {
+                throw new Error('Ошибка сети');
             }
-        };
 
+            const data = await response.json();
+            setAccounts(data); // Сохраняем данные в состояние
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            //setLoading(false); // Снимаем индикатор загрузки
+        }
+    };
+
+    const updateData = () => {
+        fetchAccounts();
+    }
+
+    useEffect(() => {
         fetchAccounts();
     }, []); // Пустой массив зависимостей означает, что useEffect выполнится один раз при монтировании компонента
+
+    const logout = async () => {
+        try {
+            const token = localStorage.getItem('token'); // Получаем токен
+
+            // Отправляем запрос на сервер для выхода
+            await fetch('/api/auth/logout', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`,
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            // Удаляем токен из localStorage
+            localStorage.removeItem('token');
+            window.location.href = '/'; // Перенаправляем на страницу входа
+        } catch (error) {
+            console.error('Ошибка при выходе из системы', error);
+        }
+    };
+
 
     return (
         <div id="webcrumbs">
@@ -85,7 +111,9 @@ function Cabinet() {
                             </li>
                             <hr />
                             <li>
-                                <button className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">Выйти</button>
+                                <Link to="/cabinet/logout" onClick={logout}>
+                                    <button className="block w-full text-left bg-neutral-100 py-2 px-4 rounded-md hover:bg-neutral-300">Выйти</button>
+                                </Link>
                             </li>
                         </ul>
                     </nav>
@@ -100,11 +128,13 @@ function Cabinet() {
                         <Routes>
                             <Route path="create" element={<Create />} />
                             <Route path="TransferBetween" element={<TransferBetween />} />
-                            <Route path="Replen" element={<Replen accounts={accounts} />} />
+                            <Route path="Replen" element={<Replen accounts={accounts} onUpdate={updateData} />} />
                             <Route path="TransferUser" element={<TransferUser />} />
                             <Route path="History" element={<History />} />
-                            <Route path="ClosingAccount" element={<ClosingAccount />} />
-                            <Route path="HomePage" element={<HomePage />} />
+                            <Route path="ClosingAccount" element={<ClosingAccount accounts={accounts} />} />
+                            <Route path="HomePage" element={<HomePage accounts={accounts} />} />
+                            <Route path="" element={<HomePage accounts={accounts} />} />
+
                         </Routes>
                     </section>
                 </main>

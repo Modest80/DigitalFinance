@@ -1,7 +1,8 @@
 ﻿import React from "react";
 
 
-function HomePage(){
+function HomePage(props) {
+
     return (
         <div id="webcrumbs">
             <div className="w-[600px] bg-neutral-50 shadow-lg rounded-lg p-6">
@@ -31,26 +32,18 @@ function HomePage(){
                     <h2 className="text-lg font-semibold">Карточки клиента</h2>
                     <div className="mt-2 space-y-4">
                         {/* Card 1 */}
-                        <div className="flex justify-between items-center p-4 border border-neutral-300 rounded-md bg-neutral-100">
+                        {props.accounts.map((account) => (
+                            <div className="flex justify-between items-center p-4 border border-neutral-300 rounded-md bg-neutral-100">
                             <div>
-                                <p className="text-sm font-medium">Visa Classic</p>
-                                <p className="text-xs">**** 1234</p>
+                                    <p className="text-sm font-medium">{account.title}</p>
+                                <p className="text-xs">{account.accountNumberReg}</p>
                             </div>
                             <div>
-                                <p className="font-semibold">12,345.67 ₽</p>
-                            </div>
-                        </div>
-
-                        {/* Card 2 */}
-                        <div className="flex justify-between items-center p-4 border border-neutral-300 rounded-md bg-neutral-100">
-                            <div>
-                                <p className="text-sm font-medium">MasterCard Gold</p>
-                                <p className="text-xs">**** 5678</p>
-                            </div>
-                            <div>
-                                <p className="font-semibold">78,912.45 ₽</p>
+                                    <p className="font-semibold">{account.balance} ₽</p>
                             </div>
                         </div>
+                        ))}
+                        
                     </div>
                 </div>
             </div>

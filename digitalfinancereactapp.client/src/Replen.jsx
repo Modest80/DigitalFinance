@@ -2,13 +2,12 @@
 import "./css/style.css";
 
 function Replen(props) {
-    const [accounts, setAccounts] = useState(props.accounts); // Хранение данных счетов
     const [loading, setLoading] = useState(true); // Индикатор загрузки
     const [error, setError] = useState(null); // Хранение ошибок
 
-    const [accountId, setAccountId] = useState('');
-    const [updateBalance, setUpdateBalance] = useState('');
-    const [message, setMessage] = useState('');
+    const [accountId, setAccountId] = useState(0);
+    const [updateBalance, setUpdateBalance] = useState(0);
+    const [message, setMessage] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Предотвращаем перезагрузку страницы
@@ -30,14 +29,19 @@ function Replen(props) {
             }
 
             const result = await response.json();
-            setMessage(`Счет обновлен: ${JSON.stringify(result)}`);
+            setMessage(`${JSON.stringify(result.message)}`);
+            handleUpdate();
         } catch (error) {
             setMessage(`Ошибка: ${error.message}`);
         }
     };
 
-    if (loading) return <p>Загрузка...</p>; // Отображаем сообщение о загрузке
-    if (error) return <p>Ошибка: {error}</p>; // Отображаем сообщение об ошибке
+    const handleUpdate = () => {
+        props.onUpdate();
+    }
+
+    //if (loading) return <p>Загрузка...</p>; // Отображаем сообщение о загрузке
+    //if (error) return <p>Ошибка: {error}</p>; // Отображаем сообщение об ошибке
 
     return (
         <div id="webcrumbs">
@@ -47,14 +51,13 @@ function Replen(props) {
                     <select className="w-full p-2 rounded-md border"
                         onChange={(e) => setAccountId(e.target.value)}>
                         <option key="0" value="0" disabled selected>-- Выберите счёт --</option>
-                        {accounts.map((account) => (
+                        {props.accounts.map((account) => (
                             <option key={account.id} value={account.id}>
                                 {`${account.title} - ${account.accountNumberReg || 'N/A'} - Баланс: ${account.balance}`}
                             </option>
                         ))}
                     </select>
                     <input type="number" placeholder="Сумма" className="border rounded-md p-2"
-                        type="number"
                         value={updateBalance}
                         onChange={(e) => setUpdateBalance(e.target.value)} />
                     {message && <p>{message}</p>} {/* Отображаем сообщение об успехе или ошибке */}

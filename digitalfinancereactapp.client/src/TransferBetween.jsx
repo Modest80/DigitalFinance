@@ -31,12 +31,13 @@ function TransferBetween() {
                 //}),
             });
 
-            if (!response.ok) {
-                throw new Error('Ошибка сети при обновлении счета');
-            }
-
             const result = await response.json();
-            setMessage(`Счет обновлен: ${JSON.stringify(result)}`);
+
+            if (!response.ok) {
+                throw new Error(JSON.stringify(result.message));
+            }
+            
+            setMessage(`Счет обновлен: ${JSON.stringify(result.message)}`);
         } catch (error) {
             setMessage(`Ошибка: ${error.message}`);
         }

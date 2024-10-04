@@ -37,5 +37,10 @@ namespace DigitalFinanceReactApp.Server.Controllers {
         public async Task<IActionResult> Options() {
             return Ok();
         }
+
+        [HttpGet("logout")]
+        public async Task<IActionResult> Logout() {
+            return Ok();
+        }
     }
 }

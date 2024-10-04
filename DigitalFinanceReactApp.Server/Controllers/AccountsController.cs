@@ -97,5 +97,16 @@ namespace DigitalFinanceReactApp.Server.Controllers {
 
             return BadRequest(new { Message = "Перевод не выполнен!" });
         }
+
+        [Authorize]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAccount(int accountId) {
+            if (accountId != 0) {
+                _accountRepository.Delete(accountId);
+                return Ok(new { Message = "Аккаунт удалён!" });
+            } else {
+                return BadRequest(new { Message = "Не указан счёт" });
+            }            
+        }
     }
 }

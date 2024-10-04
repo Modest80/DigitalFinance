@@ -62,7 +62,7 @@ function Create() {
             }
 
             const result = await response.json();
-            setMessage(`Счет создан: ${JSON.stringify(result)}`);
+            setMessage(`${JSON.stringify(result.message)}`);
         } catch (error) {
             setMessage(`Ошибка: ${error.message}`);
         }
@@ -91,6 +91,7 @@ function Create() {
                         <option className="py-2 px-4">Загрузка...</option>
                     )}
                 </select>
+                {message && <p>{message}</p>}
             </div>
             <div>
                 <label htmlFor="account-name" className="block mb-2">Название счёта</label>
