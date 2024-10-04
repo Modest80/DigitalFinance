@@ -16,7 +16,7 @@ function Replen(props) {
         const token = localStorage.getItem('token'); // Получаем токен из localStorage
 
         try {
-            const response = await fetch(`http://localhost:5146/api/Accounts/?accountId=${accountId}&updateBalance=${updateBalance}`, {
+            const response = await fetch(`http://localhost:5146/api/Accounts/Replen?accountId=${accountId}&updateBalance=${updateBalance}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `${token}`, // Указываем токен в заголовке
